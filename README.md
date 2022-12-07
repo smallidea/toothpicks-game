@@ -1,6 +1,7 @@
 <!--
  * @Date: 2022-12-07 16:22:14
  * @LastEditors: Jason Chen
+ * @Blog: https://www.cnblogs.com/smallidea
  * @LastEditTime: 2022-12-07 17:02:16
  * @FilePath: /toothpicks-game/README.md
 -->
@@ -11,7 +12,11 @@
 将15根牙签，分成三行，每行自上而下（其实方向不限）分别是3、5、7根， 安排两个玩家，每人可以在一轮内，在任意行拿任意根牙签，但不能跨行，拿最后一根牙签的人即为输家。
 
 ## 分析
-分别使用 javascript、C# 写完了代码，具体的思路都在代码里。
+- 模拟玩家1、2进行选行和选牙签，游戏规则简单而又有一定的可操作性
+- 分别使用 javascript、C# 写完了代码，时间关系type script代码没有写
+  - C# 采用命令行的标准输入、输出的方式进行交互
+  - js 使用弹窗的形式进行交互，输出f12见console
+
 
 ## 调试效果
 ### C# 

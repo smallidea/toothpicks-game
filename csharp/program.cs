@@ -1,4 +1,6 @@
-﻿// 定义牙签数量
+﻿Console.WriteLine("将15根牙签，分成三行，每行自上而下（其实方向不限）分别是3、5、7根， 安排两个玩家，每人可以在一轮内，在任意行拿任意根牙签，但不能跨行，拿最后一根牙签的人即为输家。");
+
+// 定义牙签数量
 int[] rows = { 3, 5, 7 };
 
 // 定义玩家姓名
@@ -10,11 +12,6 @@ int currentPlayer = 0;
 // 定义游戏结束标志
 bool gameOver = false;
 
-// 显示牙签数量
-Console.WriteLine($"Row 1: {rows[0]} toothpicks");
-Console.WriteLine($"Row 2: {rows[1]} toothpicks");
-Console.WriteLine($"Row 3: {rows[2]} toothpicks");
-
 // 开始游戏
 while (!gameOver)
 {
@@ -24,19 +21,16 @@ while (!gameOver)
     // 输入行号
     Console.Write("录入行号(1-3): ");
     int row = Convert.ToInt32(Console.ReadLine());
-
-    // 输入牙签数量
-    Console.Write("录入需要取的火柴数量: ");
-    int count = Convert.ToInt32(Console.ReadLine());
-
-    // 检查是否越界
-    if (row < 1 || row > 3)
+    if (row < 1 || row > rows.Length) // 行号是否错误
     {
         Console.WriteLine("错误的行号！");
         continue;
     }
 
-    if (count < 1 || count > rows[row - 1])
+    // 输入牙签数量
+    Console.Write("录入需要取的火柴数量: ");
+    int count = Convert.ToInt32(Console.ReadLine());
+    if (count < 1 || count > rows[row - 1]) // 火柴数量是否正确
     {
         Console.WriteLine("错误的火柴数量！");
         continue;
@@ -46,19 +40,23 @@ while (!gameOver)
     rows[row - 1] -= count;
 
     // 显示牙签数量
-    Console.WriteLine($"Row 1: {rows[0]} toothpicks");
-    Console.WriteLine($"Row 2: {rows[1]} toothpicks");
-    Console.WriteLine($"Row 3: {rows[2]} toothpicks");
+    Console.WriteLine($"Row 1: 剩余牙签 {rows[0]} 根");
+    Console.WriteLine($"Row 2: 剩余牙签 {rows[1]} 根");
+    Console.WriteLine($"Row 3: 剩余牙签 {rows[2]} 根");
 
     // 检查是否结束游戏
-    if (rows[0] == 0 && rows[1] == 0 && rows[2] == 0)
+    if (rows[0] + rows[1] + rows[2] == 0) // 自作孽不可活，录入剩余的牙签数量，另外一个玩家获胜
     {
         gameOver = true;
-        Console.WriteLine($"{players[currentPlayer]} wins!");
+        Console.WriteLine($"{players[(currentPlayer + 1) % 2]} 赢了!");
     }
-    else
+    else if (rows[0] + rows[1] + rows[2] == 1) // 只剩一个牙签时，即当前玩家获胜
     {
-        // 更改当前玩家
+        gameOver = true;
+        Console.WriteLine($"{players[currentPlayer]} 赢了!");
+    }
+    else  // 轮到下一个玩家，更改当前玩家
+    {
         currentPlayer = (currentPlayer + 1) % 2;
     }
 }

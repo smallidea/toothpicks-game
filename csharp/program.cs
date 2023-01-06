@@ -50,7 +50,7 @@ while (!gameOver)
         gameOver = true;
         Console.WriteLine($"{players[(currentPlayer + 1) % 2]} 赢了!");
     }
-    else if (rows[0] + rows[1] + rows[2] == 1) // 只剩一个牙签时，即当前玩家获胜
+    else if (rows[0] + rows[1] + rows[2] == 1) // 只剩一根牙签时，即当前玩家获胜
     {
         gameOver = true;
         Console.WriteLine($"{players[currentPlayer]} 赢了!");
